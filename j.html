@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power-X | Team #34240 | Engineering Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050a0f;
+    --bg2: #080e15;
+    --bg3: #0d1620;
+    --accent: #00c8ff;
+    --accent2: #ff6b00;
+    --accent3: #00ff88;
+    --text: #c8dde8;
+    --text2: #7fa8bf;
+    --border: rgba(0,200,255,0.15);
+    --glow: 0 0 20px rgba(0,200,255,0.3);
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+ 
+  .member-photo { overflow: hidden; }
+  img { transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+  .member-card:hover img { transform: scale(1.1); }
+  .prog-photo { overflow: hidden; }
+  .prog-card:hover img { transform: scale(1.1); }
+  .about-img-box:hover img { transform: scale(1.1); }
+ 
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+ 
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(5,10,15,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--accent);
+    text-shadow: var(--glow);
+    letter-spacing: 2px;
+  }
+  .nav-logo span { color: var(--accent2); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+ 
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    padding: 100px 40px 60px;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+  @keyframes gridMove {
+    0%   { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+  }
+  .hero-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,200,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--accent2);
+    background: rgba(255,107,0,0.1);
+    border: 1px solid rgba(255,107,0,0.3);
+    padding: 6px 20px;
+    margin-bottom: 30px;
+    display: inline-block;
+    animation: fadeUp 0.8s ease both;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-logo {
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    margin: 0 auto 30px;
+    background: rgba(0,200,255,0.05);
+    box-shadow: var(--glow);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-logo img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
+  h1.hero-title {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(0,200,255,0.4);
+    animation: fadeUp 0.8s 0.2s ease both;
+    position: relative;
+    z-index: 1;
+  }
+  h1.hero-title span { color: var(--accent); }
+  .hero-sub {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    letter-spacing: 6px;
+    color: var(--text2);
+    margin-top: 10px;
+    animation: fadeUp 0.8s 0.3s ease both;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-desc {
+    max-width: 680px;
+    margin: 30px auto 0;
+    font-size: 1.05rem;
+    color: var(--text2);
+    line-height: 1.8;
+    animation: fadeUp 0.8s 0.4s ease both;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-cta {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.5s ease both;
+    position: relative;
+    z-index: 1;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-primary:hover { background: #fff; box-shadow: 0 0 30px rgba(0,200,255,0.5); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-outline:hover { background: rgba(0,200,255,0.1); transform: translateY(-2px); }
+ 
+  /* ── SECTIONS ── */
+  section { padding: 100px 40px; }
+  .section-header { text-align: center; margin-bottom: 70px; }
+  .section-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  h2.section-title {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: #fff;
+    position: relative;
+    display: inline-block;
+  }
+  h2.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .section-desc {
+    margin-top: 28px;
+    color: var(--text2);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+  }
+ 
+  /* ── ABOUT ── */
+  .about-section { background: var(--bg2); }
+  .about-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-img-box {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-img-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,200,255,0.1) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .corner { position: absolute; width: 20px; height: 20px; z-index: 2; }
+  .corner-tl { top: 0; left: 0; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+  .corner-tr { top: 0; right: 0; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+  .corner-bl { bottom: 0; left: 0; border-bottom: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+  .corner-br { bottom: 0; right: 0; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+  .about-content h3 { font-family: 'Orbitron', monospace; font-size: 1.5rem; color: var(--accent); margin-bottom: 20px; }
+  .about-content p { color: var(--text2); line-height: 1.9; margin-bottom: 16px; }
+  .stats-row { display: flex; gap: 30px; margin-top: 30px; }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 900; color: var(--accent); display: block; text-shadow: var(--glow); }
+  .stat-label { font-size: 0.75rem; letter-spacing: 2px; color: var(--text2); text-transform: uppercase; }
+ 
+  /* ── TEAM ── */
+  .team-section { background: var(--bg); }
+  .team-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+  }
+  .member-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .member-card:hover {
+    border-color: rgba(0,200,255,0.4);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), var(--glow);
+  }
+  .member-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .member-card:hover::before { opacity: 1; }
+  .member-photo { width: 100%; aspect-ratio: 1 / 1; position: relative; overflow: hidden; background: var(--bg2); }
+  .member-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .member-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .badge-mentor  { background: rgba(255,107,0,0.2); color: var(--accent2); border: 1px solid rgba(255,107,0,0.4); }
+  .badge-captain { background: rgba(0,200,255,0.1);  color: var(--accent);  border: 1px solid rgba(0,200,255,0.3); }
+  .member-info { padding: 16px; }
+  .member-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; color: #fff; margin-bottom: 4px; }
+  .member-role { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 2px; color: var(--accent2); text-transform: uppercase; }
+  .member-card.mentor  { border-color: rgba(255,107,0,0.25); }
+  .member-card.captain { border-color: rgba(0,200,255,0.3); }
+ 
+  /* ── PROGRAMMING ── */
+  .programmers-section { background: var(--bg2); }
+  .programmer-cards { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+  .prog-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    overflow: hidden;
+    position: relative;
+  }
+  .prog-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--accent);
+    z-index: 2;
+  }
+  .prog-photo { position: relative; overflow: hidden; background: var(--bg2); min-height: 320px; }
+  .prog-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .prog-info { padding: 40px; }
+  .prog-info h3 { font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #fff; margin-bottom: 4px; }
+  .prog-role { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 20px; display: block; }
+  .prog-info p { color: var(--text2); line-height: 1.8; margin-bottom: 24px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+  .skill-item h5 { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .skill-item p { font-size: 0.85rem; color: var(--text); margin: 0; }
+  .achievement-box { background: rgba(0,200,255,0.05); border: 1px solid rgba(0,200,255,0.15); padding: 20px; }
+  .achievement-box h5 { font-family: 'Orbitron', monospace; font-size: 0.75rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .achievement-box p { font-size: 0.9rem; color: var(--text2); margin: 0; }
+ 
+  /* ── ENGINEERS (prog-card style) ── */
+  .engineers-section { background: var(--bg); }
+  .engineer-cards { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+ 
+  .eng-card-full {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .eng-card-full::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--accent3);
+    z-index: 2;
+  }
+  .eng-card-full:hover {
+    border-color: rgba(0,255,136,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(0,255,136,0.15);
+  }
+  .eng-card-full:hover img { transform: scale(1.05); }
+ 
+  .eng-photo-full { position: relative; overflow: hidden; background: var(--bg2); min-height: 320px; }
+  .eng-photo-full img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+ 
+  .eng-info-full { padding: 40px; }
+  .eng-info-full h3 { font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #fff; margin-bottom: 4px; }
+  .eng-role-badge { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; letter-spacing: 3px; color: var(--accent3); text-transform: uppercase; margin-bottom: 20px; display: block; }
+  .eng-info-full p { color: var(--text2); line-height: 1.8; margin-bottom: 24px; }
+ 
+  .eng-skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+  .eng-skill-item h5 { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .eng-skill-item p { font-size: 0.85rem; color: var(--text); margin: 0; }
+ 
+  .eng-achievement-box { background: rgba(0,255,136,0.05); border: 1px solid rgba(0,255,136,0.15); padding: 20px; }
+  .eng-achievement-box h5 { font-family: 'Orbitron', monospace; font-size: 0.75rem; color: var(--accent3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .eng-achievement-box p { font-size: 0.9rem; color: var(--text2); margin: 0; }
+ 
+  /* ── MEDIA (prog-card style) ── */
+  .media-section { background: var(--bg2); }
+  .media-cards { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+ 
+  .media-card-full {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .media-card-full::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--accent2);
+    z-index: 2;
+  }
+  .media-card-full:hover {
+    border-color: rgba(255,107,0,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(255,107,0,0.15);
+  }
+  .media-card-full:hover img { transform: scale(1.05); }
+ 
+  .media-photo-full { position: relative; overflow: hidden; background: var(--bg2); min-height: 320px; }
+  .media-photo-full img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+ 
+  .media-info-full { padding: 40px; }
+  .media-info-full h3 { font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #fff; margin-bottom: 4px; }
+  .media-role-badge { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; letter-spacing: 3px; color: var(--accent2); text-transform: uppercase; margin-bottom: 20px; display: block; }
+  .media-info-full p { color: var(--text2); line-height: 1.8; margin-bottom: 24px; }
+ 
+  .media-skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+  .media-skill-item h5 { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .media-skill-item p { font-size: 0.85rem; color: var(--text); margin: 0; }
+ 
+  .media-achievement-box { background: rgba(255,107,0,0.05); border: 1px solid rgba(255,107,0,0.15); padding: 20px; }
+  .media-achievement-box h5 { font-family: 'Orbitron', monospace; font-size: 0.75rem; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .media-achievement-box p { font-size: 0.9rem; color: var(--text2); margin: 0; }
+ 
+  /* ── CONTACT ── */
+  .contact-section { background: var(--bg3); }
+  .contact-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .contact-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .contact-card:hover { border-color: rgba(0,200,255,0.3); transform: translateY(-4px); box-shadow: var(--glow); }
+  .contact-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+  .contact-label { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 3px; color: var(--accent2); text-transform: uppercase; display: block; margin-bottom: 8px; }
+  .contact-value { font-size: 0.9rem; color: var(--text); word-break: break-all; line-height: 1.5; }
+  .contact-value a { color: var(--accent); text-decoration: none; }
+  .contact-value a:hover { text-decoration: underline; }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo { font-family: 'Orbitron', monospace; font-weight: 900; color: var(--accent); font-size: 1rem; letter-spacing: 2px; }
+  .footer-text { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--text2); letter-spacing: 2px; }
+  .footer-credit { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; color: var(--text2); }
+  .footer-credit span { color: var(--accent); }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { gap: 16px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .prog-card { grid-template-columns: 1fr; }
+    .prog-photo { min-height: 260px; }
+    .eng-card-full { grid-template-columns: 1fr; }
+    .eng-photo-full { min-height: 260px; }
+    .media-card-full { grid-template-columns: 1fr; }
+    .media-photo-full { min-height: 260px; }
+    .contact-inner { grid-template-columns: 1fr; }
+    section { padding: 70px 20px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    h1.hero-title { font-size: 2.2rem; }
+    .stats-row { flex-wrap: wrap; gap: 20px; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">POWER<span>-X</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#team">Team</a>
+    <a href="#programming">Code</a>
+    <a href="#engineers">Engineers</a>
+    <a href="#media">Media</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <span class="hero-badge">FIRST TECH CHALLENGE · UZBEKISTAN</span>
+  <div class="hero-logo">
+    <img src="logo.jpg" alt="Power-X Logo">
+  </div>
+  <h1 class="hero-title">TEAM <span>#34240</span></h1>
+  <p class="hero-sub">POWER-X · ENGINEERING PORTFOLIO</p>
+  <p class="hero-desc">
+    We are Power-X, a top-tier robotics team founded in Tashkent, Uzbekistan.
+    United by a shared passion for robotics and engineering, we approach every
+    challenge with determination, creativity, and innovation.
+  </p>
+  <div class="hero-cta">
+    <a href="#team" class="btn btn-primary">Meet The Team</a>
+    <a href="#contact" class="btn btn-outline">Contact Us</a>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-header">
+    <span class="section-tag">// WHO WE ARE</span>
+    <h2 class="section-title">About The Team</h2>
+  </div>
+  <div class="about-grid">
+    <div>
+      <div class="about-img-box">
+        <img src="Jamoa.jpg" alt="Power-X Team">
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+      </div>
+    </div>
+    <div class="about-content">
+      <h3>Power-X Robotics</h3>
+      <p>
+        We are Power-X, a top-tier robotics team founded in Tashkent, Uzbekistan.
+        Our team was formed within a school environment and consists of carefully
+        selected students, each chosen for their exceptional skills, discipline,
+        and strong technical background.
+      </p>
+      <p>
+        Every member specializes in a specific field and contributes with confidence
+        and responsibility, allowing our team to operate with precision and efficiency.
+        What sets Power-X apart is our commitment to excellence, teamwork, and innovation.
+      </p>
+      <p>
+        We continuously strive to raise the standard of competitive robotics in Uzbekistan,
+        approaching every challenge with determination, creativity, and respect for one another.
+      </p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num">12</span>
+          <span class="stat-label">Members</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">95%</span>
+          <span class="stat-label">Auto Success</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">#1</span>
+          <span class="stat-label">UZ Teams</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="section-header">
+    <span class="section-tag">// CREW</span>
+    <h2 class="section-title">Our Team</h2>
+    <p class="section-desc">12 ta a'zomiz — har biri o'z sohasining mutaxassisi</p>
+  </div>
+  <div class="team-grid">
+    <div class="member-card mentor">
+      <div class="member-photo">
+        <img src="Umidaopa.jpg" alt="Sanakulova Umida">
+        <span class="member-badge badge-mentor">Mentor</span>
+      </div>
+      <div class="member-info">
+        <div class="member-name">Sanakulova Umida</div>
+        <div class="member-role">Mentor</div>
+      </div>
+    </div>
+    <div class="member-card captain">
+      <div class="member-photo">
+        <img src="Abdulqodr.jpg" alt="Bakhtiyorov Abdulqodr">
+        <span class="member-badge badge-captain">Captain</span>
+      </div>
+      <div class="member-info">
+        <div class="member-name">Bakhtiyorov Abdulqodr</div>
+        <div class="member-role">Captain</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="Ozmmen.jpg" alt="Xaydarov Jasurxoja">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Xaydarov Jasurxoja</div>
+        <div class="member-role">Programmer</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="Ismoilhon.jpg" alt="Ismoilhon">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Akromhonov Ismoilhon</div>
+        <div class="member-role">coder</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="2005.jpg" alt="Mirzaqulov Yusuf">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Mirzaqulov Yusuf</div>
+        <div class="member-role">Engineer</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="shuhrat.jpg" alt="Farkhodov Shuhrat">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Farkhodov Shuhrat</div>
+        <div class="member-role">Engineer</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="sabina.jpg" alt="Muhammadjonova Sabina">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Muhammadjonova Sabina</div>
+        <div class="member-role">Engineer</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="madina.jpg" alt="Nazirjonova Madina">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Nazirjonova Madina</div>
+        <div class="member-role">Engineer</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="Asal.jpg" alt="Kholmurodova Asal">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Kholmurodova Asal</div>
+        <div class="member-role">Media</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="Odinaopa.jpg" alt="Saitnazarova Odinabonu">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Saitnazarova Odinabonu</div>
+        <div class="member-role">Media</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-photo">
+        <img src="media2.jpg" alt="Ortiqboyev Mustrafo">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Ortiqboyev Mustrafo</div>
+        <div class="member-role">Media</div>
+      </div>
+    </div>
+        <div class="member-card mentor">
+      <div class="member-photo">
+        <img src="Diyoraka.jpg" alt="Qodraliyev Diyorbek">
+      </div>
+      <div class="member-info">
+        <div class="member-name">Qodraliyev Diyorbek</div>
+        <div class="member-role">Mentor</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- PROGRAMMING -->
+<section class="programmers-section" id="programming">
+  <div class="section-header">
+    <span class="section-tag">// SOFTWARE</span>
+    <h2 class="section-title">Programming Team</h2>
+    <p class="section-desc">Autonomous routines va control systems ishlab chiquvchilar</p>
+  </div>
+  <div class="programmer-cards">
+    <div class="prog-card">
+      <div class="prog-photo">
+        <img src="Ozmmen.jpg" alt="Xaydarov Jasurxoja">
+      </div>
+      <div class="prog-info">
+        <h3>Xaydarov Jasurxoja</h3>
+        <span class="prog-role">Lead Programmer</span>
+        <p>
+          A Full Stack developer specializing in web development. Combines frontend and backend technologies to build fully functional and efficient web applications. Experienced in managing the entire development process, from user interfaces to server-side logic and databases. Focused on writing clean code, optimizing system performance, and designing scalable architectures.
+        </p>
+        <div class="skills-grid">
+          <div class="skill-item"><h5>Languages</h5><p>JavaScript,Python,SQL,HTML, CSS</p></div>
+          <div class="skill-item"><h5>Tools</h5><p>Git & GitHub,VS Code / IntelliJ IDEA, Chrome DevTools</p></div>
+          <div class="skill-item"><h5>Robotics</h5><p>Autonomous, TeleOp, Sensor Integration</p></div>
+          <div class="skill-item"><h5>Competition</h5><p>Driver Ops, Match Analysis</p></div>
+        </div>
+        <div class="achievement-box">
+          <h5>Key Achievement</h5>
+          <p>
+            Implemented a PID-based control system with IMU sensor feedback and custom dead-reckoning algorithm,
+            achieving <strong style="color:var(--accent)">95% autonomous success rate</strong> and improving average autonomous score by 40%.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-photo">
+        <img src="Ismoilhon.jpg" alt="Ismoilhon">
+      </div>
+      <div class="prog-info">
+        <h3>Akromhonov Ismoilhon</h3>
+        <span class="prog-role">Programmer — Autonomous Systems</span>
+        <p>
+          Specializes in autonomous programming and control system architecture.
+          Developed the core autonomous framework utilizing state machines and PID controllers
+          for precise navigation and scoring sequences.
+        </p>
+        <div class="achievement-box">
+          <h5>Core Contribution</h5>
+          <p>
+            Implementation of sensor fusion algorithms combining IMU data with encoder feedback
+            significantly improved path accuracy and repeatability across competition matches.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- ENGINEERS (new full-width cards) -->
+<section class="engineers-section" id="engineers">
+  <div class="section-header">
+    <span class="section-tag">// HARDWARE</span>
+    <h2 class="section-title">Engineers</h2>
+    <p class="section-desc">
+      Our engineers work as a team to solve problems and improve the robot quickly and efficiently
+      for every challenge. They test and refine each system to ensure reliable, competition-ready performance.
+    </p>
+  </div>
+ 
+  <div class="engineer-cards">
+ 
+    <!-- SABINA -->
+    <div class="eng-card-full">
+      <div class="eng-photo-full">
+        <img src="sabina.jpg" alt="Muhammadjonova Sabina">
+      </div>
+      <div class="eng-info-full">
+        <h3>Muhammadjonova Sabina</h3>
+        <span class="eng-role-badge">Mechanical Engineer</span>
+        <p>
+          Responsible for the structural design and mechanical assembly of the robot.
+          Specializes in drivetrain configuration, subsystem integration, and iterative
+          prototyping to ensure the robot performs reliably under competition conditions.
+        </p>
+        <div class="eng-skills-grid">
+          <div class="eng-skill-item"><h5>Design</h5><p>CAD Modeling, Structural Analysis</p></div>
+          <div class="eng-skill-item"><h5>Assembly</h5><p>Drivetrain, Chassis, Subsystems</p></div>
+          <div class="eng-skill-item"><h5>Materials</h5><p>Aluminum, 3D Printing, HDPE</p></div>
+          <div class="eng-skill-item"><h5>Testing</h5><p>Load Testing, Stress Analysis</p></div>
+        </div>
+        <div class="eng-achievement-box">
+          <h5>Key Contribution</h5>
+          <p>
+            Designed and built the robot's main chassis with optimized weight distribution,
+            resulting in <strong style="color:var(--accent3)">improved stability and speed</strong> on the competition field.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- SHUHRAT -->
+    <div class="eng-card-full">
+      <div class="eng-photo-full">
+        <img src="shuhrat.jpg" alt="Farkhodov Shuhrat">
+      </div>
+      <div class="eng-info-full">
+        <h3>Farkhodov Shuhrat</h3>
+        <span class="eng-role-badge">Hardware Engineer</span>
+        <p>
+          Focuses on electronics integration, wiring management, and hardware reliability.
+          Ensures all motors, servos, and sensors are correctly connected and protected
+          throughout intense match play and transportation.
+        </p>
+        <div class="eng-skills-grid">
+          <div class="eng-skill-item"><h5>Electronics</h5><p>Motor Controllers, REV Hub</p></div>
+          <div class="eng-skill-item"><h5>Wiring</h5><p>Cable Management, Power Systems</p></div>
+          <div class="eng-skill-item"><h5>Sensors</h5><p>Encoders, IMU, Distance Sensors</p></div>
+          <div class="eng-skill-item"><h5>Repair</h5><p>Field Repairs, Quick Maintenance</p></div>
+        </div>
+        <div class="eng-achievement-box">
+          <h5>Key Contribution</h5>
+          <p>
+            Implemented a clean modular wiring system that reduced debugging time by 60%
+            and achieved <strong style="color:var(--accent3)">zero wiring failures</strong> across all competition matches.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- YUSUF -->
+    <div class="eng-card-full">
+      <div class="eng-photo-full">
+        <img src="2005.jpg" alt="Mirzaqulov Yusuf">
+      </div>
+      <div class="eng-info-full">
+        <h3>Mirzaqulov Yusuf</h3>
+        <span class="eng-role-badge">Build Engineer</span>
+        <p>
+          Specializes in rapid prototyping and iterative robot builds. Plays a key role
+          in manufacturing custom parts and ensuring that design concepts are translated
+          into functional, durable mechanisms ready for competition.
+        </p>
+        <div class="eng-skills-grid">
+          <div class="eng-skill-item"><h5>Fabrication</h5><p>Cutting, Drilling, Milling</p></div>
+          <div class="eng-skill-item"><h5>Prototyping</h5><p>Rapid Build, Iteration Cycles</p></div>
+          <div class="eng-skill-item"><h5>Mechanisms</h5><p>Lifts, Claws, Intake Systems</p></div>
+          <div class="eng-skill-item"><h5>Tools</h5><p>Hand Tools, Power Tools, CNC</p></div>
+        </div>
+        <div class="eng-achievement-box">
+          <h5>Key Contribution</h5>
+          <p>
+            Built and refined the intake mechanism through multiple iterations,
+            achieving a <strong style="color:var(--accent3)">consistent grab rate</strong> on game elements during autonomous and teleop.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- MADINA -->
+    <div class="eng-card-full">
+      <div class="eng-photo-full">
+        <img src="madina.jpg" alt="Nazirjonova Madina">
+      </div>
+      <div class="eng-info-full">
+        <h3>Nazirjonova Madina</h3>
+        <span class="eng-role-badge">Manufacturing Engineer</span>
+        <p>
+          Oversees manufacturing quality and parts production for the robot.
+          Ensures components meet precise tolerances and coordinates the build schedule
+          to keep the team on track for competition deadlines.
+        </p>
+        <div class="eng-skills-grid">
+          <div class="eng-skill-item"><h5>Manufacturing</h5><p>Parts Production, Quality Control</p></div>
+          <div class="eng-skill-item"><h5>3D Printing</h5><p>Custom Brackets, Adapters</p></div>
+          <div class="eng-skill-item"><h5>Planning</h5><p>Build Schedule, Parts Inventory</p></div>
+          <div class="eng-skill-item"><h5>Assembly</h5><p>Final Assembly, Tolerance Fitting</p></div>
+        </div>
+        <div class="eng-achievement-box">
+          <h5>Key Contribution</h5>
+          <p>
+            Managed production of all custom 3D-printed components, ensuring
+            <strong style="color:var(--accent3)">precise fit and repeatability</strong> across multiple robot rebuild cycles.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- MEDIA (new full-width cards) -->
+<section class="media-section" id="media">
+  <div class="section-header">
+    <span class="section-tag">// MEDIA</span>
+    <h2 class="section-title">Media Team</h2>
+    <p class="section-desc">Jamoamizning ovozi va ko'zi — har bir lahzani qayd etuvchilar</p>
+  </div>
+ 
+  <div class="media-cards">
+ 
+    <!-- MUSTAFO -->
+    <div class="media-card-full">
+      <div class="media-photo-full">
+        <img src="Odinaopa.jpg" alt="Saitnazarova Odinabonu">
+      </div>
+      <div class="media-info-full">
+        <h3>Saitnazarova Odinabonu</h3>
+        <span class="media-role-badge">Media Lead</span>
+        <p>
+          Leads all media production for the team, including video editing, photography,
+          and content strategy. Responsible for creating the team's visual identity
+          and documenting every milestone of the season.
+        </p>
+        <div class="media-skills-grid">
+          <div class="media-skill-item"><h5>Video</h5><p>Filming, Editing, Color Grading</p></div>
+          <div class="media-skill-item"><h5>Photo</h5><p>Event Photography, Portraits</p></div>
+          <div class="media-skill-item"><h5>Design</h5><p>Branding, Thumbnails, Graphics</p></div>
+          <div class="media-skill-item"><h5>Tools</h5><p>Premiere Pro, Photoshop, Lightroom</p></div>
+        </div>
+        <div class="media-achievement-box">
+          <h5>Key Contribution</h5>
+          <p>
+            Produced the team's competition highlight reel and portfolio visuals,
+            earning recognition for <strong style="color:var(--accent2)">outstanding media presentation</strong> at regional events.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ODINABONU -->
+    <div class="media-card-full">
+      <div class="media-photo-full">
+        <img src="Asal.jpg" alt="Kholmurodova Asal">
+      </div>
+      <div class="media-info-full">
+        <h3>Kholmurodova Asal</h3>
+        <span class="media-role-badge">Social Media & Content</span>
+        <p>
+          Manages the team's social media presence and content calendar.
+          Creates engaging posts, stories, and updates that keep followers informed
+          about the team's progress and competition results.
+        </p>
+        <div class="media-skills-grid">
+          <div class="media-skill-item"><h5>Social Media</h5><p>Instagram, Telegram, YouTube</p></div>
+          <div class="media-skill-item"><h5>Copywriting</h5><p>Captions, Press Releases</p></div>
+          <div class="media-skill-item"><h5>Analytics</h5><p>Engagement Tracking, Growth</p></div>
+          <div class="media-skill-item"><h5>Design</h5><p>Canva, Story Templates</p></div>
+        </div>
+        <div class="media-achievement-box">
+          <h5>Key Contribution</h5>
+          <p>
+            Grew the team's online following significantly during the season with
+            <strong style="color:var(--accent2)">consistent, high-quality content</strong> covering every competition event.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ASAL -->
+    <div class="media-card-full">
+      <div class="media-photo-full">
+        <img src="media2.jpg" alt="Ortiqboyev Mustrafo">
+      </div>
+      <div class="media-info-full">
+        <h3>Ortiqboyev Mustrafo</h3>
+        <span class="media-role-badge">Visual Designer</span>
+        <p>
+          Responsible for the team's visual design assets, including logos, banners,
+          printed materials, and the overall aesthetic consistency of all media output.
+          Brings creative vision to the team's public-facing brand.
+        </p>
+        <div class="media-skills-grid">
+          <div class="media-skill-item"><h5>Graphic Design</h5><p>Logos, Posters, Banners</p></div>
+          <div class="media-skill-item"><h5>Branding</h5><p>Color Palette, Typography</p></div>
+          <div class="media-skill-item"><h5>Print</h5><p>Portfolio Layouts, Flyers</p></div>
+          <div class="media-skill-item"><h5>Tools</h5><p>Illustrator, Figma, Canva</p></div>
+        </div>
+        <div class="media-achievement-box">
+          <h5>Key Contribution</h5>
+          <p>
+            Designed the complete visual identity for the Power-X brand, creating a
+            <strong style="color:var(--accent2)">cohesive and professional look</strong> across all team materials and digital platforms.
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-header">
+    <span class="section-tag">// REACH US</span>
+    <h2 class="section-title">Contact</h2>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-card">
+      <span class="contact-icon">📞</span>
+      <span class="contact-label">Phone</span>
+      <div class="contact-value">
+        <a href="tel:+998947306878">+998 94 730 68 78</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">✉️</span>
+      <span class="contact-label">Email</span>
+      <div class="contact-value">
+        <a href="mailto:j.xaydarov0108@gmail.com">j.xaydarov0108@gmail.com</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">📍</span>
+      <span class="contact-label">Location</span>
+      <div class="contact-value">Tashkent, Uzbekistan</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">POWER-X · #34240</div>
+  <div class="footer-text">© 2026 TEAM #34240 POWER-X · ALL RIGHTS RESERVED</div>
+  <div class="footer-credit">Made by <span>Xaydarov Jasurxoja</span> · Lead Programmer</div>
+</footer>
+ 
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+ 
+  document.querySelectorAll(
+    '.member-card, .prog-card, .eng-card-full, .media-card-full, .contact-card, .about-grid'
+  ).forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+ 
+</body>
+</html>
